@@ -6,7 +6,7 @@ const Home = () => {
     console.log(initialCoffees)
     return (
         <div>
-            
+            this is home
         </div>
     );
 };
