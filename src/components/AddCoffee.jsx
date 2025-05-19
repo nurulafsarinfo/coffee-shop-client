@@ -26,7 +26,9 @@ const handleAddCoffee = (e) => {
                 Swal.fire({
                     title: "Coffee added successfully!",
                     icon: "success",
-                    draggable: true
+                    draggable: true,
+                    timer: 2000,
+                    showConfirmButton: false
                 });
             }
         })
