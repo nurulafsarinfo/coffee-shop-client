@@ -16,11 +16,7 @@ const SignUp = () => {
         const newUser = Object.fromEntries(formData.entries());
         const { email, password, ...restFormData } = newUser;
 
-        const userProfile = {
-            email, ...restFormData
-        }
-
-        console.log('all data with rest data-', email, password, userProfile)
+        // console.log('all data with rest data-', email, password, userProfile)
 
         // const email = formData.get('email');
         // const password = formData.get('password')
@@ -37,6 +33,13 @@ const SignUp = () => {
             .then(result => {
                 console.log('usesr-', result.user)
 
+                const userProfile = {
+                    email,
+                    ...restFormData,
+                    creationTime: result.user?.metadata?.creationTime,
+                    lastSignInTime: result.user?.metaData?.lastSignInTime,
+                }
+
                 // create user in the database
                 fetch('http://localhost:3000/users', {
                     method: 'POST',
@@ -51,7 +54,7 @@ const SignUp = () => {
                             Swal.fire({
                                 position: 'center',
                                 icon: "success",
-                                title: "Your account is created Successfully!",
+                                title: "Your account created successfully!",
                                 timer: 2000,
                                 showConfirmButton: false
                             })
@@ -66,7 +69,7 @@ const SignUp = () => {
                 Swal.fire({
                     position: 'center',
                     icon: "error",
-                    title: "Your account already created!",
+                    title: "Something Went wrong!",
                     timer: 2000,
                     showConfirmButton: false
                 })

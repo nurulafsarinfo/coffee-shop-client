@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+import { Component, StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
@@ -11,6 +11,7 @@ import CoffeeDetails from './components/CoffeeDetails.jsx'
 import SignUp from './components/SignUp.jsx'
 import Login from './components/Login.jsx'
 import AuthProvider from './Contexts/AuthProvider.jsx'
+import Users from './components/Users.jsx'
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,11 @@ const router = createBrowserRouter([
       {
         path: 'login',
         Component: Login,
+      },
+      {
+        path: 'users',
+        loader: () => fetch('http://localhost:3000/users'),
+        Component: Users,
       }
 
     ]
